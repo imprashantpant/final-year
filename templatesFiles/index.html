@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <title>Sentence Splitter</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+        .input-field {
+            width: 500px;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+        .output {
+            width: 500px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-size: 16px;
+            overflow-wrap: break-word;
+        }
+        .sentence {
+            cursor: pointer;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
+        .selected{
+            background-color: red;
+        }
+    </style>
+
+
+
+
+</head>
+<body>
+    <div class="container">
+        <input type="text" class="input-field" placeholder="Enter some text...">
+        <button class="button">Split Sentences</button>
+        <div class="output"></div>
+
+        <div class = "generatedOutput"> </div>
+    </div>
+
+    <<button class="submit">Split Sentences</button>
+
+    <script src="{{url_for('static', filename='index.js')}}"></script>
+</body>
+</html>
