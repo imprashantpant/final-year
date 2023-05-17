@@ -113,9 +113,10 @@ def generate_summary(sentences, sentenceValue, threshold):
 
     return summary
 
-def start_prediction_tfidf(originalText):
+def start_prediction_tfidf(originalText, userthresholdValue):
+    userthresholdValue = userthresholdValue - 0.1
     text = originalText
-    sents=re.split(r' *[\.\?!][\'"\)\]]* *', text)
+    sents=re.split(r' *[।?!]+[\'"\)\]]* *', text)
     documents_size = len(sents)
     words=text.split()
     freq_matrix = create_frequency_matrix(sents)
@@ -125,5 +126,5 @@ def start_prediction_tfidf(originalText):
     tf_idf_matrix = create_tf_idf_matrix(tf_matrix, idf_matrix)
     sentence_scored = sentence_scores(tf_idf_matrix)
     threshold = find_average_score(sentence_scored)
-    summary = '.'.join(generate_summary(sents, sentence_scored,0.8*threshold ))
+    summary = '। '.join(generate_summary(sents, sentence_scored,userthresholdValue*threshold ))
     return summary

@@ -2,8 +2,8 @@ import re
 
 
 def calculate_accuracy(original, generated):
-    sentencesInUserSummary= sorted(set(re.split(r' *[\.\?!][\'"\)\]]* *', original)))
-    sentencesInTfidsSummary = sorted(set(re.split(r' *[\.\?!][\'"\)\]]* *', generated)))
+    sentencesInUserSummary= sorted(set(re.split(r' *[।?!]+[\'"\)\]]* *', original)))
+    sentencesInTfidsSummary = sorted(set(re.split(r' *[।?!]+[\'"\)\]]* *', generated)))
 
     new_user = set()
     new_gen = set()
