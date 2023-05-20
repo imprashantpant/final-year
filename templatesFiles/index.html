@@ -3,87 +3,276 @@
 
     <head>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-        <title>Sentence Splitter</title>
         <style>
-            .container {
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+            .sectionContainer {
                 display: flex;
-                flex-direction: column;
-                align-items: center;
-                margin-top: 50px;
+                height: 100vh;
             }
 
-            .input-field {
-                width: 500px;
-                padding: 10px;
-                font-size: 16px;
-                margin-bottom: 20px;
+            .first-section {
+                width: 30%;
+                background-color: #f2f2f2;
+                padding: 20px;
+                min-width: 200px;
             }
 
-            .button {
-                background-color: #4CAF50;
-                border: none;
-                color: white;
+            .second-section {
+                flex-grow: 1;
+                background-color: #ffffff;
+                padding: 20px;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap: 10px;
+            }
+
+            .card {
+                /* width: calc(33.33% - 20px); */
+                background-color: #f9f9f9;
+                border: 1px solid #ccc;
+                padding: 20px;
+                margin: 10px;
+                box-sizing: border-box;
+                /* display: none; */
+            }
+
+            .hidden {
+                display: none;
+            }
+
+
+
+
+
+            .btn {
+                display: block;
+                width: 100%;
+                margin-bottom: 10px;
                 padding: 10px;
                 text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 16px;
-                margin-bottom: 20px;
+                background-color: #4caf50;
+                color: #ffffff;
+                border: none;
+                border-radius: 4px;
                 cursor: pointer;
             }
 
-            .output {
-                width: 500px;
-                border: 1px solid #ccc;
+            .input-box {
+                width: 100%;
                 padding: 10px;
+                margin-bottom: 10px;
+                box-sizing: border-box;
+            }
+
+            .submit-btn {
+                display: block;
+                width: 100%;
+                padding: 10px;
+                text-align: center;
+                background-color: #4caf50;
+                color: #ffffff;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+
+                margin: 20px;
+            }
+
+            .radio-label {
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .radio-input {
+                margin-right: 5px;
+            }
+
+
+            /* Experimenting */
+            .output {
+                width: 700px;
+                /* border: 1px solid #ccc; */
+                border: 0.5px solid #333d29;
+                border-radius: 10px;
+                margin: 5px;
                 font-size: 16px;
                 overflow-wrap: break-word;
+                margin-top: 20px;
             }
 
             .sentence {
+                margin: 8px;
+                border: 1px solid #333d29;
+                border-radius: 10px;
                 cursor: pointer;
-                font-weight: bold;
-                color: #4CAF50;
+                /* font-weight: regular; */
+                background-color: #f0f4ef;
+                color: #000000;
+                padding: 10px;
             }
 
             .selected {
-                background-color: red;
+                background-color: #4caf50;
+                color: white;
             }
 
-            select {
+            .content {
+                text-align: justify;
+            }
+
+            .userOutput {
+                display: none;
+            }
+
+            /* select {
                 width: 100%;
                 background-color: #fff;
                 border: 1px solid #ccc;
                 padding: 10px;
                 font-size: 16px;
                 color: #333;
-            }
+            } */
 
-            select option {
+            /* select option {
                 background-color: #eee;
                 padding: 10px 20px;
                 font-size: 16px;
                 color: #333;
-            }
+            } */
 
-            select:hover {
+            /* select:hover {
                 border-color: #bbb;
             }
 
             select:focus {
                 border-color: #aaa;
                 background-color: #f0f0f0;
-            }
+            } */
 
         </style>
-
-
-
-
     </head>
 
+    <!--  <button class="btn">Button 1</button>
+      <button class="btn">Button 2</button> -->
+
     <body>
+        <div class="sectionContainer">
+            <div class="first-section">
+
+                <select name="category" , class="categorySelection input-box">
+                    <option value="Yoga">Yoga</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Health">Health</option>
+                    <option value="Technology">Technology</option>
+                </select>
+
+                <!-- Radio Starts Here -->
+
+                <div class="radio-label">
+                    <input type="radio" name="size" id="small" value="1.1" , class="radio-input">
+                    <label for="small">Small</label>
+                </div>
+
+                <div class="radio-label">
+                    <input type="radio" name="size" id="medium" value="1" checked>
+                    <label for="medium">Medium</label>
+                </div>
+
+                <div class="radio-label">
+                    <input type="radio" name="size" id="large" value="0.9">
+                    <label for="large">Large</label>
+                </div>
+                <!-- Radio Ends Here -->
+
+
+                <!--   <input type="text" class="input-box" placeholder="Input box">
+      <button class="submit-btn">Submit</button>
+ -->
+
+                <div class="container">
+                    <input type="text" class="input-field input-box" placeholder="Enter Nepali Text text...">
+
+                </div>
+                <button class="button submit-btn">Begin Process</button>
+
+            </div>
+
+
+            <div class="second-section">
+                <!-- Second section content goes here -->
+
+                <!-- <h2> User Summary </h2>
+            <div class="output"></div>
+
+            <div class="generatedOutput"> </div> -->
+                <div class="card" id="card1">
+                    <!-- <h3>Card 1</h3>
+                    <p>This the first card.</p> -->
+                    <h2> User Summary </h2>
+                    <div class="output"></div>
+
+                    <div class="generatedOutput userOutput"> </div>
+
+                    <button id='userSubmit' onclick="showCards()" class="submit submit-btn">Submit User
+                        Summary</button>
+
+                    <!-- <button  class="submit-btn" onclick="showCards()">Submit</button> -->
+
+                </div>
+                <div class="card hidden" id="card2">
+                    <h2> TF-IDF Summary </h2>
+                    <div class="tfidfsummary content"> </div>
+
+
+                </div>
+                <div class="card hidden" id="card3">
+                    <h2> BM25 Summary </h2>
+                    <div class="BM25Summary content"> </div>
+                </div>
+                <div class="card hidden" id="card4">
+                    <h3> Accuracy Between User and TF-IDF </h3>
+                    <div class="accuracyValue"> </div>
+
+                    <h3> Accuracy Between User and BM25 </h3>
+                    <div class="accuracyValueBM25"> </div>
+                    <p>Total Length in Original Text: <span class='countOriginal'> </span> </p>
+                    <p>Total Length in TF-IDF Model: <span class='countTFIDF'> </span> </p>
+                    <p>Total Length in BM25 Model: <span class='countBM25'> </span> </p>
+                    <h2> Senteces Count </h2>
+                    <p>Total Length in TFIDF Model: <span class='countTFIDFSentence'> </span> </p>
+                    <p>Total Length in BM25 Model: <span class='countBM25Sentence'> </span> </p>
+                    <p>Total Length in Original Model: <span class='countOriginalSentence'> </span> </p>
+
+                    <script>
+                        function showCards() {
+                            var firstCard = document.getElementById("card1");
+                            firstCard.style.display = "none";
+
+                            var button = document.getElementById("userSubmit");
+                            button.style.display = "none";
+
+                            var cards = document.getElementsByClassName("card");
+                            for (var i = 1; i < cards.length; i++) {
+                                cards[i].style.display = "block";
+                            }
+                        }
+                    </script>
+                </div>
+            </div>
+
+            <script src="{{url_for('static', filename='index.js')}}"></script>
+    </body>
+
+</html>
+
+
+
+<!--
+   <body>
         <select name="category" , class="categorySelection">
             <option value="Yoga">Yoga</option>
             <option value="Entertainment">Entertainment</option>
@@ -138,6 +327,4 @@
         </section>
 
         <script src="{{url_for('static', filename='index.js')}}"></script>
-    </body>
-
-</html>
+    </body> -->

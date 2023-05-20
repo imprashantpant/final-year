@@ -60,7 +60,7 @@ document.querySelector(".button").addEventListener("click", () => {
   let output = "";
   for (let i = 0; i < sentences.length; i++) {
     if (sentences[i] !== "") {
-      output += `<button class="sentence test">${sentences[i]}</button>. `;
+      output += `<button class="sentence test">${sentences[i]}</button> `;
     }
   }
   document.querySelector(".output").innerHTML = output;
