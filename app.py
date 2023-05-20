@@ -46,7 +46,7 @@ def index():
 
     # query = Summary.query.filter(Summary.id >= 5, Summary.id <= 7)
 
-    # query = Summary.query.filter(Summary.id ==5)
+    # query = Summary.query.filter(Summary.id ==7)
     # query.delete(synchronize_session=False)
     # db.session.commit()
 

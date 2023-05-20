@@ -8,6 +8,9 @@ let result_bm25_acc = 0.0;
 let category = "Yoga";
 let error = "";
 let thresholdValue = 1.0;
+// countTFIDFSentence = 0;
+// countBM25Sentence = 0;
+// countOriginalSentence = 0;
 
 
 
@@ -114,6 +117,7 @@ function accuracyResultBM25(result_bm25_acc) {
 
 }
 
+// Counting Words
 
 function showTFIDF(countTFIDF) {
   document.querySelector(".countTFIDF").innerHTML = countTFIDF;
@@ -127,6 +131,26 @@ function showOriginal(countOriginal) {
   document.querySelector(".countOriginal").innerHTML = countOriginal;
 }
 
+// Sentences
+// showTFIDFSentence
+// showBM25Sentence
+// showOriginalSentence
+
+// countTFIDFSentence
+// countBM25Sentence
+// countOriginalSentence
+
+function showTFIDFSentence(countTFIDFSentence) {
+  document.querySelector(".countTFIDFSentence").innerHTML = countTFIDFSentence;
+}
+function showBM25Sentence(countBM25Sentence) {
+  document.querySelector(".countBM25Sentence").innerHTML = countBM25Sentence;
+}
+function showOriginalSentence(countOriginalSentence) {
+  document.querySelector(".countOriginalSentence").innerHTML = countOriginalSentence;
+}
+
+
 
 
 
@@ -138,15 +162,25 @@ document.querySelector(".submit").addEventListener("click", () => {
 
 });
 
+// function countWords(paragraph) {
+
+//   const cleanedParagraph = paragraph.replace(/।/g, '');
+//   const words = cleanedParagraph.split(' ');
+//   const filteredWords = words.filter(word => word.trim() !== '');
+//   return filteredWords.length;
+
+// }
+
 function countWords(paragraph) {
-  // Replace all instances of "danda" (।) with an empty string
-  const cleanedParagraph = paragraph.replace(/।/g, '');
-  // Split the cleaned paragraph into an array of words
-  const words = cleanedParagraph.split(' ');
-  // Filter out any empty words
-  const filteredWords = words.filter(word => word.trim() !== '');
-  // Return the count of words
-  return filteredWords.length;
+  const words = paragraph.replace(/\s+/g, "");
+  return words.length;
+}
+
+
+function countNepaliSentences(text) {
+  const sentenceEndings = /[।?]/g;
+  const matches = text.match(sentenceEndings);
+  return matches ? matches.length : 0;
 }
 
 
@@ -164,6 +198,7 @@ function makePostRequest(path, queryObj) {
       console.log(result_bm25);
       console.log(result_bm25_acc);
       console.log(error);
+
       tfidfsummary(result_tfidf);
       accuracyResult(result_tfidf_acc);
       BM25summary(result_bm25);
@@ -171,10 +206,29 @@ function makePostRequest(path, queryObj) {
       countTFIDF = countWords(result_tfidf);
       countBM25 = countWords(result_bm25);
       countOriginal = countWords(originalText);
+      console.log(countTFIDF);
+      console.log(countBM25);
+      console.log(countOriginal);
+      console.log(originalText);
+
+
+
+
+      countTFIDFSentence = countNepaliSentences(result_tfidf);
+      countBM25Sentence = countNepaliSentences(result_bm25);
+      countOriginalSentence = countNepaliSentences(originalText);
+
+      console.log(countTFIDFSentence);
+      console.log(countBM25Sentence);
+      console.log(countOriginalSentence);
 
       showTFIDF(countTFIDF);
       showBM25(countBM25);
       showOriginal(countOriginal);
+
+      showTFIDFSentence(countTFIDFSentence);
+      showBM25Sentence(countBM25Sentence);
+      showOriginalSentence(countOriginalSentence);
 
     },
     (error) => {

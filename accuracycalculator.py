@@ -20,7 +20,7 @@ def calculate_accuracy(original, generated):
         else:
             new_gen.add(val)
 
-    new = new_user.intersection(new_gen)
+    new = new_gen.intersection(new_user)
     acc = (len(new) / len(new_gen)) * 100
 
     return acc

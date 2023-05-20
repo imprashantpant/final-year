@@ -127,4 +127,5 @@ def start_prediction_tfidf(originalText, userthresholdValue):
     sentence_scored = sentence_scores(tf_idf_matrix)
     threshold = find_average_score(sentence_scored)
     summary = '। '.join(generate_summary(sents, sentence_scored,userthresholdValue*threshold ))
-    return summary
+    summary += ' । '
+    return summary 

@@ -300,7 +300,8 @@ def start_prediction_bm25(originalText, docsList, userthresholdValue):
 
 
     #Take Out The Summary Here
-    summary = '। '.join(generate_summary(sents, sentence_scores_value, userthresholdValue*threshold ))
+    summary = ' । '.join(generate_summary(sents, sentence_scores_value, userthresholdValue*threshold ))
+    summary += ' । '
     return summary
     # print(summary)
 
